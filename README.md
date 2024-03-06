@@ -73,6 +73,9 @@ Wire the potentiometer onto your breadboard. Refer to [this Adafruit page](https
 
 Fill in `test_sensors/pot_test.cpp` with test code to read your potentiometer. Refer to [this Adafruit page](https://learn.adafruit.com/make-it-change-potentiometers/arduino#display-to-serial-3001622) as an example.
 
+Necessary changes:
+- Add `#include <Arduino.h>` to the beginning of your file.
+
 ### 2.2 Button
 
 #### 2.2.1 Wiring
@@ -144,7 +147,7 @@ Wire the IMU onto your breadboard. Refer to [this Adafruit page](https://learn.a
 
 Fill in `test_sensors/imu_test.cpp` with test code to read your IMU. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-9-dof-orientation-imu-fusion-breakout-bno085/arduino#example-code-3072315) as an example. We have already imported the IMU library in `platformio.ini` for you.
 
-A couple of additional things:
+Necessary changes:
 - Comment out line 11 `#define BNO08X_RESET -1` and uncomment line 9 `#define BNO08X_RESET 5`
 - Comment out line 23 `if (!bno08x.begin_I2C()) {` and uncomment line 25 `if (!bno08x.begin_SPI(BNO08X_CS, BNO08X_INT)) {`
 - Move the entire `void setReports(void)` function (lines 50-56) to be above `void setup(void) {` (line 16)
