@@ -93,9 +93,16 @@ Fill in `test_sensors/button_test.cpp` with test code to read your button. For t
 
         <details>
         <summary><i>How do I go to <code>PIO Home/Libraries</code> in VSCode?</i></summary>
+
+        <p align="center">
+          <img src="./.images/platformio_extension.png" height="400" />
+          &nbsp;
+          <img src="./.images/platformio_libraries.png" height="400" />
+        </p>
+
         </details>
 
-    2. Open the Installation tab and add the specified line (`#The exact version` in VSCode) to the lib_deps option of `[env:]` section. For this example, the full library name would be `thomasfredericks/Bounce2@^2.72`.
+    2. Open the Installation tab and add the specified line to the lib_deps option of `[env:]` section. For this example, the this would be `thomasfredericks/Bounce2@^2.72`.
 
     </details>
 2. Fill in `test_sensors/button_test.cpp` with test code to use your button to turn on the LED. 
