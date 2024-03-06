@@ -105,7 +105,7 @@ Fill in `test_sensors/button_test.cpp` with test code to read your button. For t
 
         </details>
 
-    2. Open the Installation tab and add the specified line to the lib_deps option of `[env:]` section. For this example, the this would be `thomasfredericks/Bounce2@^2.72`.
+    2. Open the Installation tab and add the specified line to the lib_deps option of `[env:]` section. For this example, this would be `thomasfredericks/Bounce2@^2.72`.
 
     </details>
 2. Fill in `test_sensors/button_test.cpp` with test code to use your button to turn on the LED. 
