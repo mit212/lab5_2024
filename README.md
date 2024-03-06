@@ -24,14 +24,14 @@ Spring 2024[^1]
   - [3.2 Validate Encoders](#32-validate-encoders)
   - [3.3 Sensor Integration](#33-sensor-integration)
 - [4 Free Exploration](#4-free-exploration)
-- [4.1 TFT Display](#41-tft-display)
+- [4.1 Wireless Communication](#41-wireless-communication)
   - [4.1.1 Wiring](#411-wiring)
   - [4.1.2 Coding](#412-coding)
-  - [4.1.3 Sensor Integration](#413-sensor-integration)
-- [4.2 Wireless Communication](#42-wireless-communication)
+  - [4.1.3 Wireless Sensor-controlled Motor](#413-wireless-sensor-controlled-motor)
+- [4.2 TFT Display](#42-tft-display)
   - [4.2.1 Wiring](#421-wiring)
-  - [4.2.1 Coding](#421-coding)
-  - [4.2.2 Wireless Sensor-controlled Motor](#422-wireless-sensor-controlled-motor)
+  - [4.2.2 Coding](#422-coding)
+  - [4.2.3 Sensor Integration](#423-sensor-integration)
 - [5 Feedback Form](#5-feedback-form)
 
 ## 1 Microcontroller
@@ -77,7 +77,7 @@ Fill in `test_sensors/pot_test.cpp` with test code to read your potentiometer. R
 
 #### 2.2.1 Wiring
 
-Wire the button onto your breadboard. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-arduino-lesson-6-digital-inputs/breadboard-layout) as an example. You only need one button. You can wire an LED as well, or use the built-in LED on the microcontroller.
+Wire the button, LED, and resistor onto your breadboard. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-arduino-lesson-6-digital-inputs/breadboard-layout) as an example. You only need one button.
 
 #### 2.2.2 Coding
 
@@ -131,11 +131,13 @@ If you are using the VL53L0X (black board), refer to [this Adafruit page](https:
 
 #### 2.4.1 Wiring 
 
-Wire the IMU onto your breadboard. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-9-dof-orientation-imu-fusion-breakout-bno085/arduino#spi-wiring-3072345) as an example. We will be using the SPI protocol.
+Wire the IMU onto your breadboard. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-9-dof-orientation-imu-fusion-breakout-bno085/arduino#spi-wiring-3072345) as an example. We will use the SPI protocol.
 
 #### 2.4.2 Coding
 
-Fill in `test_sensors/imu_test.cpp` with test code to read your IMU. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-9-dof-orientation-imu-fusion-breakout-bno085/arduino#example-code-3072315) as an example. Make sure to uncomment the line `#define BNO08X_RESET 5`. The IMU library has already been imported in `platformio.ini`.
+Fill in `test_sensors/imu_test.cpp` with test code to read your IMU. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-9-dof-orientation-imu-fusion-breakout-bno085/arduino#example-code-3072315) as an example. 
+
+Uncomment lines `#define BNO08X_RESET 5` and `if (!bno08x.begin_SPI(BNO08X_CS, BNO08X_INT)) {` since we are using the SPI protocol. Comment out `if (!bno08x.begin_I2C()) {`. Additionally, move the entire `void setReports(void)` function to be above `void setup(void)`. The IMU library has already been imported in `platformio.ini`.
 
 ## 3 Sensor-controlled Motor 
 Estimated time of completion: 15 min
@@ -165,43 +167,44 @@ Estimated time of completion: now until the end of lab
 
 The next two subsections are purposefully open-ended to encourage exploration. You are welcome to do either, both, or something completely different! Again, consider doing something you think will be useful for the final project. You will demonstrate to the staff what you have made in the last 10-15 minutes of lab.
 
-## 4.1 TFT Display
-
-Up to now, we've conducted all our validation tests by printing to the Serial Monitor. This requires constant wired connection to your machine, which isn't always ideal. For example, you might want to troubleshoot sensors on your mobile robot as it is moving! In some cases, it is more convenient to instead use a TFT display.
-
-### 4.1.1 Wiring
-
-Ask the staff for a TFT display and wire it onto your breadboard using [this Adafruit page](https://learn.adafruit.com/adafruit-3-5-color-320x480-tft-touchscreen-breakout/spi-wiring-and-test) as reference. If your breadboard too crowded, you can ask the staff for another microcontroller and breadboard. Remember to validate the new microcontroller by first running `robot/blink_test.cpp`.
-
-### 4.1.2 Coding
-
-Import the `Adafruit_HX8357` library and copy the example code into `test_code/display_test.cpp`. Run `test_code/display_test.cpp` to show text and shapes on your display. 
-
-### 4.1.3 Sensor Integration
-
-Choose a sensor whose readings will be printed on the display. If you are using a new microcontroller and breadboard, rewire your chosen sensor on the new breadboard and revalidate it first using the test code you wrote in `test_sensors/`.
-
-In `lab_code/display_sensor.cpp`, combine `test_code/display_test.cpp` and the test code you wrote in `test_sensors/` to print sensor readings to the display instead of the Serial Monitor. You may find the implementation of `testText()` in `test_code/display_test.cpp` helpful.
-
-## 4.2 Wireless Communication
+## 4.1 Wireless Communication
 
 Upto now, we've only used wired communications. What happens if we want to control the mobile robot via joystick for the final project? Clearly, the joystick can't also be physically attached to the mobile robot. The microcontrollers we are using can communicate to each other via WiFi. 
 
-### 4.2.1 Wiring
+### 4.1.1 Wiring
 
-You first need to divide your setup into a *sender* and a *receiver*. In our case, the *sender* should be connected to your chosen sensor (and, optionally, the display), while the *receiver* should be connected to the motor. Ask the staff for any necessary parts and rewire your setup.
+You first need to divide your setup into a *sender* and a *receiver*. In our case, the *sender* should be connected to your chosen sensor, while the *receiver* should be connected to the motor. Ask the staff for any necessary parts and rewire your setup.
 
-### 4.2.1 Coding
+### 4.1.2 Coding
 
 Run `get_mac.cpp` on the *receiver* to get the MAC address of the *receiver* microcontroller. Then, replace `broadcastAddress` in `wireless/esp_now_sender.cpp` to be that MAC address. Run `wireless/esp_now_sender.cpp` on the *sender* and `wireless/esp_now_receiver.cpp` on the *receiver*. Keep the *receiver* connected to your machine and open the Serial Monitor. 
 
 Confirm that the data received, as printed on the Serial Monitor, is reasonable given the data sent. Hint: Refer to lines `60` to `63` in `wireless/esp_now_sender.cpp` to see what data is being sent.
 
-### 4.2.2 Wireless Sensor-controlled Motor 
+### 4.1.3 Wireless Sensor-controlled Motor 
 
 Modify `wireless/esp_now_sender.cpp` and `wireless/esp_now_receiver.cpp` so that the *sender* reads and sends sensor data, while the *receiver* parses this data and uses it to command the motor. Remember what you learned in previous labs about `struct`s to define a message type. You may need to incorporate code from `test_code/motor_position/control.cpp`.
 
 If you get stuck, refer to this [tutorial](https://randomnerdtutorials.com/esp-now-esp32-arduino-ide/) or ask the staff for help!
+
+## 4.2 TFT Display
+
+Up to now, we've conducted all our validation tests by printing to the Serial Monitor. This requires constant wired connection to your machine, which isn't always ideal. For example, you might want to troubleshoot sensors on your mobile robot as it is moving! In some cases, it is more convenient to instead use a TFT display.
+
+### 4.2.1 Wiring
+
+Ask the staff for a TFT display and wire it onto your breadboard using [this Adafruit page](https://learn.adafruit.com/adafruit-3-5-color-320x480-tft-touchscreen-breakout/spi-wiring-and-test) as reference. If you did the wireless setup, wire the display to the *sender*. Or, if your breadboard is too crowded, ask the staff for another microcontroller and breadboard. Remember to validate the new microcontroller by first running `robot/blink_test.cpp`.
+
+### 4.2.2 Coding
+
+Import the `Adafruit_HX8357` library and copy the example code into `test_code/display_test.cpp`. Run `test_code/display_test.cpp` to show text and shapes on your display. 
+
+### 4.2.3 Sensor Integration
+
+Choose a sensor whose readings will be printed on the display. If you are using a new microcontroller and breadboard, rewire your chosen sensor on the new breadboard and revalidate it first using the test code you wrote in `test_sensors/`.
+
+In `lab_code/display_sensor.cpp`, combine `test_code/display_test.cpp` and the test code you wrote in `test_sensors/` to print sensor readings to the display instead of the Serial Monitor. You may find the implementation of `testText()` in `test_code/display_test.cpp` helpful.
+
 
 | :white_check_mark: CHECKOFF 2 :white_check_mark:   |
 |:---------------------------------------------------|
