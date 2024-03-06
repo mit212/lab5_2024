@@ -1,5 +1,5 @@
-#ifndef PINOUT
-#define PINOUT
+#ifndef PINOUT_H
+#define PINOUT_H
 
 //motor pins
 #define DIR1 39
@@ -13,7 +13,16 @@
 #define ENCODER2_A_PIN 15
 #define ENCODER2_B_PIN 16
 
-#define XPIN 1
-#define YPIN 2
+// TODO: Set pins for sensors here.
+
+#define BUTTON_PIN 1
+
+#define POT_PIN 2
+
+#define BNO08X_CS 10
+#define BNO08X_INT 9
+#define BNO08X_RESET 5
+
+
 
 #endif
