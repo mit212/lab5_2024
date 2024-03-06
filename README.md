@@ -147,7 +147,7 @@ Fill in `test_sensors/imu_test.cpp` with test code to read your IMU. Refer to [t
 A couple of additional things:
 - Comment out line 11 `#define BNO08X_RESET -1` and uncomment line 9 `#define BNO08X_RESET 5`
 - Comment out line 23 `if (!bno08x.begin_I2C()) {` and uncomment line 25 `if (!bno08x.begin_SPI(BNO08X_CS, BNO08X_INT)) {`
-- Move the entire `void setReports(void)` function (lines 50-56) to be above `void setup(void)`
+- Move the entire `void setReports(void)` function (lines 50-56) to be above `void setup(void) {` (line 16)
 
 ## 3 Sensor-controlled Motor 
 Estimated time of completion: 15 min
