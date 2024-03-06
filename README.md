@@ -3,6 +3,9 @@
 2.12/2.120 Intro to Robotics  
 Spring 2024[^1]
 
+<details>
+  <summary>Table of Contents</summary>
+
 - [1 Microcontroller](#1-microcontroller)
   - [1.1 Validate Microcontroller](#11-validate-microcontroller)
   - [1.2 Microcontroller Pinout](#12-microcontroller-pinout)
@@ -33,6 +36,8 @@ Spring 2024[^1]
   - [4.2.2 Coding](#422-coding)
   - [4.2.3 Sensor Integration](#423-sensor-integration)
 - [5 Feedback Form](#5-feedback-form)
+
+</details>
 
 ## 1 Microcontroller
 Estimated time of completion: 5 min
