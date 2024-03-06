@@ -142,9 +142,12 @@ Wire the IMU onto your breadboard. Refer to [this Adafruit page](https://learn.a
 
 #### 2.4.2 Coding
 
-Fill in `test_sensors/imu_test.cpp` with test code to read your IMU. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-9-dof-orientation-imu-fusion-breakout-bno085/arduino#example-code-3072315) as an example. 
+Fill in `test_sensors/imu_test.cpp` with test code to read your IMU. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-9-dof-orientation-imu-fusion-breakout-bno085/arduino#example-code-3072315) as an example. We have already imported the IMU library in `platformio.ini` for you.
 
-Uncomment lines `#define BNO08X_RESET 5` and `if (!bno08x.begin_SPI(BNO08X_CS, BNO08X_INT)) {` since we are using the SPI protocol. Comment out `if (!bno08x.begin_I2C()) {`. Additionally, move the entire `void setReports(void)` function to be above `void setup(void)`. The IMU library has already been imported in `platformio.ini`.
+A couple of additional things:
+- Uncomment lines `#define BNO08X_RESET 5` and `if (!bno08x.begin_SPI(BNO08X_CS, BNO08X_INT)) {` since we are using the SPI protocol
+- Comment out `if (!bno08x.begin_I2C()) {`
+- Move the entire `void setReports(void)` function to be above `void setup(void)`
 
 ## 3 Sensor-controlled Motor 
 Estimated time of completion: 15 min
