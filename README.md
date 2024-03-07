@@ -58,7 +58,7 @@ https://github.com/mit212/lab1_2024?tab=readme-ov-file#31-git-clone).
 Refer to the pinout diagram [here](https://esp32s3.com/pros3.html#img1) when choosing pins for sensors, motors, and encoders:
 
 <p align="center">
-  <img src="./.images/mcu_pinouts.jpeg" height="350" />
+  <img src="./.images/mcu_pinouts.jpeg" height="400" />
 </p>
 
 The pin numbers in code are usually defined either in `include/pinout.h` or through `#define` statements at the beginning of the test code. In this lab, you are free to use any pins as long as they are the right type and you update the code to match your chosen pins.
