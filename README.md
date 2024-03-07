@@ -134,17 +134,17 @@ Fill in `test_sensors/button_test.cpp` with test code to read your button. For t
 
 Wire the ToF sensor onto your breadboard. We will be using the I2C protocol.
 
-If you are using the VL6180X (green board), refer to [this Adafruit page](https://learn.adafruit.com/adafruit-vl6180x-time-of-flight-micro-lidar-distance-sensor-breakout/wiring-and-test#wiring-3060229) as an example.
+If you are using the VL6180X, refer to [this Adafruit page](https://learn.adafruit.com/adafruit-vl6180x-time-of-flight-micro-lidar-distance-sensor-breakout/wiring-and-test#wiring-3060229) as an example.
 
-If you are using the VL53L0X (black board), refer to [this Adafruit page](https://learn.adafruit.com/adafruit-vl53l0x-micro-lidar-distance-sensor-breakout/arduino-code#step-2593375) as an example.
+If you are using the VL53L0X, refer to [this Adafruit page](https://learn.adafruit.com/adafruit-vl53l0x-micro-lidar-distance-sensor-breakout/arduino-code#step-2593375) as an example.
 
 #### 2.3.2 Coding
 
 Fill in `test_sensors/tof_test.cpp` with test code to read your time-of-flight sensor. Similar to the button, you will have to import the ToF library and refer to the demo code.
 
-If you are using the VL6180X (green board), refer to [this Adafruit page](https://learn.adafruit.com/adafruit-vl6180x-time-of-flight-micro-lidar-distance-sensor-breakout/wiring-and-test#install-adafruit-vl6180x-2980766) as an example. The name of the library is `Adafruit_VL6180X`, and the demo code is called `vl6180x`.
+If you are using the VL6180X, refer to [this Adafruit page](https://learn.adafruit.com/adafruit-vl6180x-time-of-flight-micro-lidar-distance-sensor-breakout/wiring-and-test#install-adafruit-vl6180x-2980766) as an example. The name of the library is `Adafruit_VL6180X`, and the demo code is called `vl6180x`.
 
-If you are using the VL53L0X (black board), refer to [this Adafruit page](https://learn.adafruit.com/adafruit-vl53l0x-micro-lidar-distance-sensor-breakout/arduino-code#download-adafruit-vl53l0x-2593377) as an example. The name of the library is `Adafruit_VL53L0X`, and the demo code is called `vl53l0x`.
+If you are using the VL53L0X, refer to [this Adafruit page](https://learn.adafruit.com/adafruit-vl53l0x-micro-lidar-distance-sensor-breakout/arduino-code#download-adafruit-vl53l0x-2593377) as an example. The name of the library is `Adafruit_VL53L0X`, and the demo code is called `vl53l0x`.
 
 ### 2.4 IMU
 
@@ -204,7 +204,9 @@ Confirm that the data received, as printed on the Serial Monitor, is reasonable 
 
 ### 4.1.3 Wireless Sensor-controlled Motor 
 
-Modify `wireless/esp_now_sender.cpp` and `wireless/esp_now_receiver.cpp` so that the *sender* reads and sends sensor data, while the *receiver* parses this data and uses it to command the motor. Remember what you learned in previous labs about `struct`s to define a message type. You may need to incorporate code from `test_code/motor_position/control.cpp`.
+Copy `wireless/esp_now_sender.cpp` to `lab_code/sensor_sender.cpp` and `wireless/esp_now_receiver.cpp` to `lab_code/robot_receiver.cpp`. 
+
+Then, modify the newly copied code so that the *sender* reads and sends sensor data, while the *receiver* parses this data and uses it to command the motor. Remember what you learned in previous labs about `struct`s to define a message type. You may need to incorporate code from `test_code/motor_position/control.cpp`.
 
 If you get stuck, refer to this [tutorial](https://randomnerdtutorials.com/esp-now-esp32-arduino-ide/) or ask the staff for help!
 
