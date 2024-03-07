@@ -140,26 +140,25 @@ If you are using the VL53L0X (black board), refer to [this Adafruit page](https:
 
 #### 2.3.2 Coding
 
-Fill in `test_sensors/tof_test.cpp` with test code to read your time-of-flight sensor. Once again, you will have to import the ToF library and refer to the demo code.
+Fill in `test_sensors/tof_test.cpp` with test code to read your time-of-flight sensor. Similar to the button, you will have to import the ToF library and refer to the demo code.
 
-If you are using the VL6180X (green board), refer to [this Adafruit page](https://learn.adafruit.com/adafruit-vl6180x-time-of-flight-micro-lidar-distance-sensor-breakout/wiring-and-test#install-adafruit-vl6180x-2980766) as an example. The name of this library is `Adafruit_VL6180X`, and the demo code is called `vl6180x
-`.
-If you are using the VL53L0X (black board), refer to [this Adafruit page](https://learn.adafruit.com/adafruit-vl53l0x-micro-lidar-distance-sensor-breakout/arduino-code#download-adafruit-vl53l0x-2593377) as an example. The name of this library is `Adafruit_VL53L0X`, and the demo code is called `vl53l0x`.
+If you are using the VL6180X (green board), refer to [this Adafruit page](https://learn.adafruit.com/adafruit-vl6180x-time-of-flight-micro-lidar-distance-sensor-breakout/wiring-and-test#install-adafruit-vl6180x-2980766) as an example. The name of the library is `Adafruit_VL6180X`, and the demo code is called `vl6180x`.
+
+If you are using the VL53L0X (black board), refer to [this Adafruit page](https://learn.adafruit.com/adafruit-vl53l0x-micro-lidar-distance-sensor-breakout/arduino-code#download-adafruit-vl53l0x-2593377) as an example. The name of the library is `Adafruit_VL53L0X`, and the demo code is called `vl53l0x`.
 
 ### 2.4 IMU
 
 #### 2.4.1 Wiring 
 
-Wire the IMU onto your breadboard. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-9-dof-orientation-imu-fusion-breakout-bno085/arduino#spi-wiring-3072345) as an example. We will use the SPI protocol.
+Wire the IMU onto your breadboard. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-9-dof-orientation-imu-fusion-breakout-bno085/arduino#spi-wiring-3072345) as an example. We will use the SPI protocol. `SPI MISO` is equivalent to `SPI MI` and `SPI MOSI` is equivalent to `SPI MO`.
 
 #### 2.4.2 Coding
 
-Fill in `test_sensors/imu_test.cpp` with test code to read your IMU. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-9-dof-orientation-imu-fusion-breakout-bno085/arduino#example-code-3072315) as an example. We have already imported the IMU library in `platformio.ini` for you.
+Fill in `test_sensors/imu_test.cpp` with test code to read your IMU. We have already imported the IMU library for you. However, you will still have to look it up to refer to the demo code. The name of the library is `Adafruit BNO08x`, and the demo code is called `quaternion_yaw_pitch_roll`.
 
 Necessary changes:
-- Comment out line 11 `#define BNO08X_RESET -1` and uncomment line 9 `#define BNO08X_RESET 5`
-- Comment out line 23 `if (!bno08x.begin_I2C()) {` and uncomment line 25 `if (!bno08x.begin_SPI(BNO08X_CS, BNO08X_INT)) {`
-- Move the entire `void setReports(void)` function (lines 50-56) to be above `void setup(void) {` (line 16)
+- Comment out line 17 `#define BNO08X_RESET -1` and uncomment line 15 `#define BNO08X_RESET 5`
+- Comment out line 52 `if (!bno08x.begin_I2C()) {` and uncomment line 54 `if (!bno08x.begin_SPI(BNO08X_CS, BNO08X_INT)) {`
 
 ## 3 Sensor-controlled Motor 
 Estimated time of completion: 15 min
