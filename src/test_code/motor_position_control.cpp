@@ -11,7 +11,7 @@
 #define Kp 9.36
 #define alpha 10
 MotorDriver motor(DIR1, PWM1, 0);  
-EncoderVelocity encoder(ENCODER_A_PIN, ENCODER_B_PIN, CPR_60_RPM, 0.2);
+EncoderVelocity encoder(ENCODER_A_PIN, ENCODER_B_PIN, CPR_312_RPM, 0.2);
 LeadLagFilter leadLag(alpha, Td, Ti);
 double setpoint = 0;
 double position = 0;
