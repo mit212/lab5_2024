@@ -55,13 +55,13 @@ https://github.com/mit212/lab1_2024?tab=readme-ov-file#31-git-clone).
 
 ### 1.2 Microcontroller Pinout
 
-Refer to the pinout diagram [here](https://esp32s3.com/pros3.html#img1) when choosing pins for sensors, motors, and encoders:
+Refer to the pinout diagram [here](https://esp32s3.com/pros3.html#img1) when choosing pins for sensors, motors, and encoders.
 
 <p align="center">
   <img src="./.images/mcu_pinouts.jpeg" height="400" />
 </p>
 
-The pin numbers in code are usually defined either in `include/pinout.h` or through `#define` statements at the beginning of the test code. In this lab, you are free to use any pins as long as they are the right type and you update the code to match your chosen pins.
+The pin numbers in code are usually defined either in `include/pinout.h` or through `#define` statements at the beginning of the test code. In this lab, **you are free to use any pins as long as they are the right type and you update the code to match your chosen pins**.
 
 Feel free to clarify with staff if you are unsure what the labels mean! A printout of this diagram has also been provided to you.
 
@@ -94,39 +94,49 @@ Wire the button, LED, and resistor onto your breadboard. Refer to [this Adafruit
 #### 2.2.2 Coding
 
 Fill in `test_sensors/button_test.cpp` with test code to read your button. For this lab, we will be using the `Bounce2` library to filter out undesired state changes (debouncing).
-<!-- Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-arduino-lesson-6-digital-inputs/arduino-code) as an example. -->
 
-1. Import the `Bounce2` library in `platformio.ini`.
+<details>
+  <summary><i>How do I import a library in PlatformIO?</i></summary>
 
-    <details>
-    <summary><i>How do I import a library in platform.io?</i></summary>
+  1. Click the PIO Icon on the left side of the screen.
+      <p align="center">
+        <img src="./.images/platformio_extension.png" height="300" />  
+      </p>
 
-    1. Go to `PIO Home/Libraries` (in VSCode) or to [PlatformIO Registry](https://registry.platformio.org/) and search for the library. For this example, the name of your library would be `Bounce2`.
+  2. Go to `PIO Home/Libraries`.
+      <p align="center">
+        <img src="./.images/platformio_libraries.png" height="350" />  
+      </p>
 
-        <details>
-        <summary><i>How do I go to <code>PIO Home/Libraries</code> in VSCode?</i></summary>
+  3. Search for and click the `Bounce2` library.
+      <p align="center">
+        <img src="./.images/platformio_bounce.png" height="350" />  
+      </p>
 
-        <p align="center">
-          <img src="./.images/platformio_extension.png" height="400" />
-          &nbsp;
-          <img src="./.images/platformio_libraries.png" height="400" />
-        </p>
+  4. Click the "Add to Project" button. **Don't click Add in the pop up!** Instead, copy the text in the topmost textbox.
+      <p align="center">
+        <img src="./.images/platformio_import.png" height="350" />  
+      </p>
 
-        </details>
+  5. Exit out of the pop up by clicking the X or the "Cancel" button.
+  6. Navigate back to see your files and directories by clicking the topmost icon on the left side of the screen. 
+  7. Open the `platformio.ini` file, likely the second to the last file, above `README.md`.
+  8. Paste the text you copied under the `TODO`, in the `lib_deps` section of `[env]`. 
+  9. Save the file. You should see PlatformIO reprocess the imported libraries.
+</details>
 
-    2. Open the Installation tab and add the specified line to the lib_deps option of `[env:]` section. For this example, this would be `thomasfredericks/Bounce2@^2.72`.
+<details>
+  <summary><i>Where do I find demo code?</i></summary>
 
-    </details>
-2. Fill in `test_sensors/button_test.cpp` with test code to use your button to turn on the LED. 
+ 1. Navigate back to the `Bounce2` library. 
+ 2. You can select an example from the dropdown. For the button, we will use `bounce_basic`.
+    <p align="center">
+       <img src="./.images/platformio_example.png" height="350" />  
+     </p>
 
-    <details>
-      <summary><i>Where can I find the demo code?</i></summary>
+ 3. Copy the code into `test_sensors/button_test.cpp`.
 
-      1. Go to `PIO Home/Libraries` (in VSCode) or to [PlatformIO Registry](https://registry.platformio.org/) and search for the library. For this example, the name of your library would be `Bounce2`.
-
-      2. Open the Examples tab, choose your preferred demo code. For this example, `bounce_basic` is sufficient. Copy the code into `src/test_sensors/button_test.cpp`.
-
-    </details>
+</details>
 
 ### 2.3 Time-of-Flight
 
@@ -177,9 +187,14 @@ Wire up the encoder and run `test_code/encoder_test.cpp`. Open the Serial Monito
 
 We now want to use one of the sensors to dictate a variable involved in `test_code/motor_position_control.cpp`. For example, you can use the potentiometer reading to be `setpoint`. Running `test_code/motor_position_control.cpp` as is should make the motor oscillate back and forth.
 
-Incorporate sensor reading code from the tests in the previous section into `test_code/motor_position_control.cpp`. You may have to map or convert your sensor reading into reasonable values for the variable you choose. 
+Incorporate sensor reading code from the tests in the previous section into `test_code/motor_position_control.cpp`. You may have to map or convert your sensor reading into reasonable values for the variable you choose.
 
 You are free to use any sensor you want. You can even use multiple sensors! Consider sensor/s that you think will be useful for the final project. 
+
+<details><summary><i> Getting an insanely large control effort??</i></summary>
+
+If your control effort looks like it's 100 digits long, comment out any `delay` calls in the `loop` function. The `delay` might be messing with the timing of `EVERY_N_MICROS`.
+</details>
 
 | :white_check_mark: CHECKOFF 1 :white_check_mark:   |
 |:---------------------------------------------------|

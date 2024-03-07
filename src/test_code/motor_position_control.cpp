@@ -8,7 +8,7 @@
 
 #define Ti 0.0183
 #define Td 0.0021
-#define Kp 9.36
+#define Kp 0.936
 #define alpha 10
 MotorDriver motor(DIR1, PWM1, 0);  
 EncoderVelocity encoder(ENCODER_A_PIN, ENCODER_B_PIN, CPR_312_RPM, 0.2);
