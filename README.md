@@ -148,6 +148,8 @@ If you are using the VL53L0X, refer to [this Adafruit page](https://learn.adafru
 
 ### 2.4 IMU
 
+*Important Info for Section 1: We only have 5 BNO085 IMUs available. If there are no more BNO085s in the bin by the time you reach this section, please borrow one from another pair.*
+
 #### 2.4.1 Wiring 
 
 Wire the IMU onto your breadboard. Refer to [this Adafruit page](https://learn.adafruit.com/adafruit-9-dof-orientation-imu-fusion-breakout-bno085/arduino#spi-wiring-3072345) as an example. We will use the SPI protocol. `SPI MISO` is equivalent to `SPI MI` and `SPI MOSI` is equivalent to `SPI MO`.
@@ -186,7 +188,7 @@ You are free to use any sensor you want. You can even use multiple sensors! Cons
 ## 4 Free Exploration
 Estimated time of completion: now until the end of lab
 
-The next two subsections are purposefully open-ended to encourage exploration. You are welcome to do either, both, or something completely different! Again, consider doing something you think will be useful for the final project. You will demonstrate to the staff what you have made in the last 10-15 minutes of lab.
+The next two subsections are purposefully open-ended to encourage exploration. You are welcome to do either, both, or something completely different!  (We have random sensors in the bin.) Again, consider doing something you think will be useful for the final project. You will demonstrate to the staff what you have made in the last 10-15 minutes of lab.
 
 ## 4.1 Wireless Communication
 
